@@ -1,6 +1,7 @@
 import { EventEmitter } from 'fbemitter'
 
-const SERVER = 'http://localhost:3001'
+//const SERVER = 'http://localhost:3001'
+const SERVER = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`
 
 class SongHandler {
   constructor () {

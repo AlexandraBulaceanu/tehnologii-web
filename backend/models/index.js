@@ -9,9 +9,21 @@ const config = require(__dirname + "/../config/config.js");
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-	sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
+console.log(config.use_env_variable)
+
+if (config.node_env !== "local"){
+	sequelize = new Sequelize(config.database_url, {
+		dialect: 'postgres',
+		protocol: 'postgres',
+		dialectOptions: {
+			ssl: {
+			require: true,
+			rejectUnauthorized: false
+		}
+	}
+	})
+}
+else{
 	sequelize = new Sequelize(
 		config.database,
 		config.username,
@@ -19,27 +31,6 @@ if (config.use_env_variable) {
 		config
 	);
 }
-/*let sequelize;
-if (process.env.NODE_ENV === 'development') {
-	sequelize = new Sequelize(
-		config.database,
-		config.username,
-		config.password,
-		config
-	);
-} else {
-	sequelize = new Sequelize(process.env.DATABASE_URL, {
-		dialect: 'postgres',
-		protocol: 'postgres',
-		dialectOptions: {
-		  ssl: {
-			require: true,
-			rejectUnauthorized: false
-		  }
-		}
-	  });
-}*/
-
 
 
 

@@ -41,6 +41,7 @@ module.exports = {
 		});
 	},
 	down: async (queryInterface, Sequelize) => {
+		await queryInterface.sequelize.query("DROP TYPE \"enum_users_sellerAccountType\""); 
 		await queryInterface.dropTable("Songs");
 	},
 };
