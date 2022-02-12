@@ -50,7 +50,7 @@ module.exports.deletePlaylist = async (id) => {
 				status: "no playlist with said id",
 			};
 		}
-		await db.sequelize.query("SET FOREIGN_KEY_CHECKS=0");
+		//await db.sequelize.query("SET FOREIGN_KEY_CHECKS=0");
 		await playlistToDelete.destroy();
 		return { status: "success" };
 	} catch (err) {

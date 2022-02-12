@@ -66,8 +66,8 @@ module.exports.deleteSong = async (id) => {
 				status: "no Song with said id",
 			};
 		}
-		await db.sequelize.query("SET FOREIGN_KEY_CHECKS=0");
-		await SongToDelete.destroy();
+		//await db.sequelize.query("SET FOREIGN_KEY_CHECKS=0");
+		await songToDelete.destroy();
 		return { status: "success" };
 	} catch (err) {
 		console.log("ups eroare");
